@@ -20,12 +20,23 @@ public class PauseManager : MonoBehaviour
     public void TogglePause()
     {
         isPaused = !isPaused;
-        pauseScreen.SetActive(isPaused);
+        if (isPaused)
+        {
+            pauseScreen.SetActive(true);
+            settingsScreen.SetActive(false);
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
 
-        Time.timeScale = isPaused ? 1.0f : 0.0f;
-
-        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = isPaused;
+        else
+        {
+            pauseScreen.SetActive(false);
+            settingsScreen.SetActive(false);
+            Time.timeScale = 1f;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     public void ResumeGame()
@@ -49,4 +60,13 @@ public class PauseManager : MonoBehaviour
         settingsScreen.SetActive(false);
         pauseScreen.SetActive(true);
     }
+
+public void QuitGame()
+{
+#if UNITY_EDITOR
+    UnityEditor.EditorApplication.isPlaying = false;
+#else
+    Application.Quit();
+#endif
+      }
 }
