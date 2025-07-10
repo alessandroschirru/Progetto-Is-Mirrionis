@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     private CharacterController controller;
     private PlayerInputActions inputActions;
-    private Vector2 moveInput;
+    public Vector2 moveInput;
     private bool jumpPressed;
     private Vector3 velocity;
     private bool isGrounded;
@@ -59,4 +59,10 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
+    public bool IsGrounded()
+    {
+        return isGrounded;
+    }
+
 }

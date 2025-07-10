@@ -587,6 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642054708dbd9334fa0af31b57a6c6c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMovement: {fileID: 1162382332}
   controller: {fileID: 1162382326}
   minVelocity: 0.1
 --- !u!82 &1162382331
@@ -686,6 +687,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1162382332 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4485912976820585650, guid: 65a310b6549a2d241b5ed2604cc3f3e7, type: 3}
+  m_PrefabInstance: {fileID: 306100703}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162382317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742b90f5dd00a854fbeb4d1f3d70b185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1295760673
 MonoBehaviour:
   m_ObjectHideFlags: 0
