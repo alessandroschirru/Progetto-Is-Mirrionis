@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9044514315174025162}
   - component: {fileID: 7076670388112063761}
   m_Layer: 0
-  m_Name: puzzle -2 Trigger
+  m_Name: Puzzle -2 Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

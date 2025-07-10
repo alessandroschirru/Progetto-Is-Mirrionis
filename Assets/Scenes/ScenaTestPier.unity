@@ -1329,7 +1329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8700378750528515535, guid: c97050c1959945240adea89b0cb79cdc, type: 3}
       propertyPath: m_Name
-      value: puzzle -1 Trigger
+      value: Puzzle -1 Trigger
       objectReference: {fileID: 0}
     - target: {fileID: 9113124789082360918, guid: c97050c1959945240adea89b0cb79cdc, type: 3}
       propertyPath: puzzleCanvas
@@ -1548,7 +1548,7 @@ PrefabInstance:
       objectReference: {fileID: 635152432}
     - target: {fileID: 7640960163611891180, guid: aab7cc0ca63deed429166b59e6119c03, type: 3}
       propertyPath: m_Name
-      value: puzzle -2 Canvas
+      value: Puzzle -2 Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1565,7 +1565,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4730002457887865576, guid: d6cca9470421ad542bd4ddf155ce0881, type: 3}
       propertyPath: m_Name
-      value: puzzle -2 Trigger
+      value: Puzzle -2 Trigger
       objectReference: {fileID: 0}
     - target: {fileID: 5181448189478258334, guid: d6cca9470421ad542bd4ddf155ce0881, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1815,7 +1815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7295691328035867990, guid: a5363355d2f0ae146b46a7c04cdfbe53, type: 3}
       propertyPath: m_Name
-      value: puzzle -1 Canvas
+      value: Puzzle -1 Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
