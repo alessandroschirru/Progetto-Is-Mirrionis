@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742b90f5dd00a854fbeb4d1f3d70b185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveInput: {x: 0, y: 0}
   groundCheck: {fileID: 8740012653585920291}
   groundMask:
     serializedVersion: 2
@@ -144,6 +145,7 @@ GameObject:
   - component: {fileID: 422610368356235695}
   - component: {fileID: 3507011523365098622}
   - component: {fileID: 2854163956571425762}
+  - component: {fileID: 6393376132748722698}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -282,6 +284,27 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &6393376132748722698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5142721256899068220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c121398445aa8cb489642b032b967938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabDistance: 3
+  grabbableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  grabSmoothness: 10
+  holdDistance: 1.5
+  crosshair: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  highlightColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &8190491471894712822
 GameObject:
   m_ObjectHideFlags: 0
