@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,8 +7,9 @@ public class PauseManager : MonoBehaviour
     [Header("Canvas da mostrare/attivare")]
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject settingsScreen;
+    [HideInInspector] static public bool isPaused = false;
+    [HideInInspector] static public bool inPuzzle = false;
 
-    private bool isPaused = false;
 
     public void Update()
     {
@@ -28,15 +30,18 @@ public class PauseManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-
-        else
+        else 
         {
             pauseScreen.SetActive(false);
             settingsScreen.SetActive(false);
-            Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            if (inPuzzle == false)
+            {
+                Time.timeScale = 1f;
+            }
         }
+
     }
 
     public void ResumeGame()
@@ -61,7 +66,7 @@ public class PauseManager : MonoBehaviour
         pauseScreen.SetActive(true);
     }
 
-public void QuitGame()
+    public void QuitGame()
 {
 #if UNITY_EDITOR
     UnityEditor.EditorApplication.isPlaying = false;

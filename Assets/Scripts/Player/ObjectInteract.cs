@@ -1,18 +1,17 @@
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 
-public class ObjectGrabber : MonoBehaviour
+public class ObjectInteract : MonoBehaviour
 {
     public float grabDistance = 3f;
     public LayerMask grabbableLayer;
     public float grabSmoothness = 10f;
     public float holdDistance = 1.5f;
-
-    public Image crosshair; 
+    public Image crosshair;
     public Color defaultColor = Color.white;
     public Color highlightColor = Color.red;
-
     private Rigidbody grabbedObject = null;
+    private GameObject canvasReadable;
 
     void Update()
     {
@@ -31,6 +30,17 @@ public class ObjectGrabber : MonoBehaviour
             HoldObject();
         }
 
+        if (Input.GetKeyDown(KeyCode.E) && Time.timeScale != 0f)
+        {
+            TryInteractWithReadable();
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && canvasReadable && !PauseManager.isPaused)
+        {
+            CloseReadable();
+        }
+
         UpdateCrosshair();
     }
 
@@ -43,7 +53,6 @@ public class ObjectGrabber : MonoBehaviour
             grabbedObject.linearDamping = 10f;
         }
     }
-
     void HoldObject()
     {
         Vector3 holdPosition = Camera.main.transform.position + Camera.main.transform.forward * holdDistance;
@@ -51,28 +60,28 @@ public class ObjectGrabber : MonoBehaviour
 
         grabbedObject.linearVelocity = direction * grabSmoothness;
     }
-
     void ReleaseObject()
     {
         grabbedObject.useGravity = true;
         grabbedObject.linearDamping = 0f;
         grabbedObject = null;
     }
-
     void UpdateCrosshair()
     {
         if (crosshair == null) return;
 
-        if (GetGrabbableObject(out _))
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, grabDistance))
         {
-            crosshair.color = highlightColor;
+            if ((grabbableLayer == (grabbableLayer | (1 << hit.collider.gameObject.layer))) || hit.collider.CompareTag("Readable"))
+            {
+                crosshair.color = highlightColor;
+                return;
+            }
         }
-        else
-        {
-            crosshair.color = defaultColor;
-        }
-    }
 
+        crosshair.color = defaultColor;
+    }
     bool GetGrabbableObject(out Rigidbody rb)
     {
         rb = null;
@@ -86,5 +95,33 @@ public class ObjectGrabber : MonoBehaviour
             }
         }
         return false;
+    }
+    void TryInteractWithReadable()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, grabDistance))
+        {
+            if (hit.collider.CompareTag("Readable"))
+            {
+                InteractWithReadable(hit.collider.gameObject);
+            }
+        }
+    }
+    void InteractWithReadable(GameObject readable)
+    {
+        canvasReadable = readable.transform.GetChild(0).gameObject;
+        canvasReadable.SetActive(true);
+        PauseManager.inPuzzle = true;
+        Time.timeScale = 0f;
+        crosshair.gameObject.SetActive(false);
+    }
+    public void CloseReadable()
+    {
+        canvasReadable.SetActive(false);
+        PauseManager.inPuzzle = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1f;
+        crosshair.gameObject.SetActive(true);
     }
 }
