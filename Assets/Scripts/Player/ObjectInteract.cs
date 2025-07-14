@@ -32,13 +32,13 @@ public class ObjectInteract : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && Time.timeScale != 0f)
         {
-            TryInteractWithReadable();
+            TryInteractWithPuzzleOrReadable();
             return;
         }
 
         if (Input.GetKeyDown(KeyCode.E) && canvasReadable && !PauseManager.isPaused)
         {
-            CloseReadable();
+            ClosePuzzleOrReadable();
         }
 
         UpdateCrosshair();
@@ -96,7 +96,7 @@ public class ObjectInteract : MonoBehaviour
         }
         return false;
     }
-    void TryInteractWithReadable()
+    void TryInteractWithPuzzleOrReadable()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, grabDistance))
@@ -114,13 +114,12 @@ public class ObjectInteract : MonoBehaviour
         PauseManager.inPuzzle = true;
         Time.timeScale = 0f;
         crosshair.gameObject.SetActive(false);
+        Cursor.visible = true;
     }
-    public void CloseReadable()
+    public void ClosePuzzleOrReadable()
     {
         canvasReadable.SetActive(false);
         PauseManager.inPuzzle = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         Time.timeScale = 1f;
         crosshair.gameObject.SetActive(true);
     }
