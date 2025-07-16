@@ -1,0 +1,49 @@
+Titoli
+
+# Titolo H1
+## Titolo H2
+### Titolo H3
+#### Titolo H4
+-----------------------------------------------
+Testo formattato
+
+*Corsivo*  oppure  _Corsivo_
+**Grassetto**  oppure  __Grassetto__
+***Corsivo e grassetto***
+~~Barrato~~
+-----------------------------------------------
+Liste
+Elenchi puntati:
+
+- Voce uno
+- Voce due
+  - Sotto-voce
+Elenchi numerati:
+
+1. Primo punto
+2. Secondo punto
+   1. Sotto-punto
+-----------------------------------------------
+Codice
+Inline:
+
+Usa il metodo `OnTriggerEnter()`
+Blocco codice:
+
+Usando tre backtick (```) sopra e sotto:
+
+```csharp
+void OnTriggerEnter(Collider other) {
+    // codice qui
+}
+```md
+-----------------------------------------------
+ Link e immagini
+
+[Testo cliccabile](https://link.com)
+
+![Alt immagine](url_immagine)
+-----------------------------------------------
+ Citazioni
+
+> Questo è un blocco di citazione o nota.
