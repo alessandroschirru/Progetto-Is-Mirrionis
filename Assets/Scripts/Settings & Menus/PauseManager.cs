@@ -9,11 +9,12 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private GameObject settingsScreen;
     [HideInInspector] static public bool isPaused = false;
     [HideInInspector] static public bool inPuzzle = false;
+    public GameObject player;
 
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             TogglePause();
         }
@@ -41,17 +42,18 @@ public class PauseManager : MonoBehaviour
                 Time.timeScale = 1f;
             }
         }
-
     }
 
     public void ResumeGame()
     {
         isPaused = false;
         pauseScreen.SetActive(false);
-        Time.timeScale = 1f;
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        if (inPuzzle == false)
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     public void Settings()

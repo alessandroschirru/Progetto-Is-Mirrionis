@@ -111,16 +111,19 @@ public class ObjectInteract : MonoBehaviour
     {
         canvasReadable = readable.transform.GetChild(0).gameObject;
         canvasReadable.SetActive(true);
-        PauseManager.inPuzzle = true;
-        Time.timeScale = 0f;
+        PauseManager.inPuzzle = true; 
         crosshair.gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Time.timeScale = 0f;
     }
     public void ClosePuzzleOrReadable()
     {
         canvasReadable.SetActive(false);
         PauseManager.inPuzzle = false;
-        Time.timeScale = 1f;
         crosshair.gameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1f;
     }
 }
