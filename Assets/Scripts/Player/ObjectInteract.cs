@@ -18,6 +18,7 @@ public class ObjectInteract : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             TryGrabObject();
+            Debug.Log("Prova grab");
         }
 
         if (Input.GetMouseButtonUp(0) && grabbedObject != null)
@@ -65,6 +66,7 @@ public class ObjectInteract : MonoBehaviour
         grabbedObject.useGravity = true;
         grabbedObject.linearDamping = 0f;
         grabbedObject = null;
+        Debug.Log("Rilasciato");
     }
     void UpdateCrosshair()
     {
