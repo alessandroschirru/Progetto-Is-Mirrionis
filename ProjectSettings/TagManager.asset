@@ -8,6 +8,8 @@ TagManager:
   - Sphere
   - Block
   - Interactable
+  - Coin
+  - CoinSpot
   layers:
   - Default
   - TransparentFX

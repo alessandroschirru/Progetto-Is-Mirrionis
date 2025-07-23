@@ -5,7 +5,6 @@ public class MouseDrag2D : MonoBehaviour
     public LayerMask grabbableLayer;
     private Rigidbody2D grabbedRb;
     private Vector3 offset;
-    private Transform initialTransform;
 
     void Update()
     {
@@ -19,9 +18,9 @@ public class MouseDrag2D : MonoBehaviour
             if (hit.collider != null)
             {
                 grabbedRb = hit.collider.attachedRigidbody;
+            
                 if (grabbedRb != null)
                 {
-                    initialTransform = grabbedRb.transform;
                     offset = grabbedRb.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 }
             }
@@ -41,6 +40,7 @@ public class MouseDrag2D : MonoBehaviour
             grabbedRb = null;
 
             // LOGICA RILASCIO MONETE
+            
 
         }
     }
