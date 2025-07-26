@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
 {
@@ -29,18 +29,19 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnMouseUp()
     {
+        Debug.Log("Ciao");
         isDragging = false;
 
         this.transform.GetComponent<CircleCollider2D>().enabled = false;
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+        Collider2D hit = Physics2D.OverlapPoint(mousePos);
 
-        if(hit.transform == null)
+        if (hit == null)
         {
             transform.position = startPosition;
         }
-        else if(hit.transform.tag == "CoinSpot")
+        else if (hit.CompareTag("CoinSpot"))
         {
             transform.position = hit.transform.position;
         }
@@ -51,12 +52,12 @@ public class DragAndDrop : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

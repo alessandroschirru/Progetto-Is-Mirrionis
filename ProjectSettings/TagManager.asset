@@ -13,6 +13,7 @@ TagManager:
   - Door
   - Key
   - Switch
+  - Table
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Water
   - UI
   - Draggable
-  - 
+  - Obstacle
   - 
   - 
   - 
@@ -49,6 +50,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Layer -1
+    uniqueID: 2359688641
+    locked: 0
+  - name: Layer 0
+    uniqueID: 2407874449
+    locked: 0
+  - name: Layer 1
+    uniqueID: 3479929495
     locked: 0
   m_RenderingLayers:
   - Default
