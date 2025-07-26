@@ -12,6 +12,7 @@ public class ObjectInteract : MonoBehaviour
     public Color highlightColor = Color.red;
     private Rigidbody grabbedObject = null;
     private GameObject canvasReadable;
+    public GameObject HintCanvas;
 
     void Update()
     {
@@ -31,15 +32,21 @@ public class ObjectInteract : MonoBehaviour
             HoldObject();
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && Time.timeScale != 0f)
-        {
-            TryInteractWithPuzzleOrReadable();
-            return;
-        }
-
-        if (Input.GetKeyDown(KeyCode.E) && canvasReadable && !PauseManager.isPaused)
+        if (Input.GetKeyDown(KeyCode.E) && canvasReadable != null && canvasReadable.activeSelf)
         {
             ClosePuzzleOrReadable();
+        }
+
+        else if (Input.GetKeyDown(KeyCode.E) && Time.timeScale != 0f && !PauseManager.isPaused)
+        {
+            if (IsLookingAtDoor())
+            {
+                TryToggleDoor();
+            }
+            else if (IsLookingAtReadable())
+            {
+                TryInteractWithPuzzleOrReadable();
+            }
         }
 
         UpdateCrosshair();
@@ -75,14 +82,29 @@ public class ObjectInteract : MonoBehaviour
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, grabDistance))
         {
+            bool highlight = false;
+
             if ((grabbableLayer == (grabbableLayer | (1 << hit.collider.gameObject.layer))) || hit.collider.CompareTag("Readable"))
             {
-                crosshair.color = highlightColor;
-                return;
+                highlight = true;
             }
+
+            if (hit.collider.CompareTag("Door"))
+            {
+                highlight = true;
+                if (HintCanvas != null) HintCanvas.SetActive(true);
+            }
+            else
+            {
+                if(HintCanvas != null) HintCanvas.SetActive(false);
+            }
+
+                crosshair.color = highlight ? highlightColor : defaultColor;
+            return;
         }
 
         crosshair.color = defaultColor;
+        if (HintCanvas != null) HintCanvas.SetActive(false);
     }
     bool GetGrabbableObject(out Rigidbody rb)
     {
@@ -98,7 +120,7 @@ public class ObjectInteract : MonoBehaviour
         }
         return false;
     }
-    void TryInteractWithPuzzleOrReadable()
+    bool TryInteractWithPuzzleOrReadable()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, grabDistance))
@@ -106,8 +128,10 @@ public class ObjectInteract : MonoBehaviour
             if (hit.collider.CompareTag("Readable"))
             {
                 InteractWithReadable(hit.collider.gameObject);
+                return true;
             }
         }
+        return false;
     }
     void InteractWithReadable(GameObject readable)
     {
@@ -127,5 +151,32 @@ public class ObjectInteract : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1f;
+    }
+
+    bool TryToggleDoor()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, grabDistance))
+        {
+            DoorHinge door = hit.collider.GetComponentInParent<DoorHinge>();
+            if (door != null)
+            {
+                door.ToggleDoor();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool IsLookingAtDoor()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        return Physics.Raycast(ray, out RaycastHit hit, grabDistance) && hit.collider.CompareTag("Door");
+    }
+
+    bool IsLookingAtReadable()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        return Physics.Raycast(ray, out RaycastHit hit, grabDistance) && hit.collider.CompareTag("Readable");
     }
 }

@@ -20,7 +20,7 @@ public class TriggerLight : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Block"))
+        if (other.CompareTag("Switch"))
         {
             Debug.Log("Nel Trigger");
 
@@ -43,7 +43,7 @@ public class TriggerLight : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Block"))
+        if (other.CompareTag("Switch"))
         {
             Debug.Log("Fuori dal Trigger");
             targetLight.color = originalColor;
