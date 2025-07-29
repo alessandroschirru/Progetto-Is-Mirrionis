@@ -47,6 +47,10 @@ public class ObjectInteract : MonoBehaviour
             {
                 TryInteractWithPuzzleOrReadable();
             }
+            else if (isLookingAtTrapdoor())
+            {
+                TryToggleTrapdoor();
+            }
         }
 
         UpdateCrosshair();
@@ -89,7 +93,7 @@ public class ObjectInteract : MonoBehaviour
                 highlight = true;
             }
 
-            if (hit.collider.CompareTag("Door"))
+            if (hit.collider.CompareTag("Door") || hit.collider.CompareTag("Trapdoor"))
             {
                 highlight = true;
                 if (HintCanvas != null) HintCanvas.SetActive(true);
@@ -168,6 +172,21 @@ public class ObjectInteract : MonoBehaviour
         return false;
     }
 
+    bool TryToggleTrapdoor()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, grabDistance))
+        {
+            TrapdoorHinge trapdoor = hit.collider.GetComponentInParent<TrapdoorHinge>();
+            if(trapdoor != null)
+            {
+                trapdoor.ToggleTrapdoor();
+                return true;
+            }
+        }
+        return false;
+    }
+
     bool IsLookingAtDoor()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -178,5 +197,11 @@ public class ObjectInteract : MonoBehaviour
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         return Physics.Raycast(ray, out RaycastHit hit, grabDistance) && hit.collider.CompareTag("Readable");
+    }
+
+    bool isLookingAtTrapdoor()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        return Physics.Raycast(ray, out RaycastHit hit, grabDistance) && hit.collider.CompareTag("Trapdoor");
     }
 }

@@ -5,9 +5,10 @@ using TMPro;
 public class KeyPad : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI displayText;
-    [SerializeField] private string correctCode = "1234";
+    [SerializeField] private string correctCode = "1240";
     [SerializeField] private int maxDigits = 4;
     [SerializeField] private DoorHinge door;
+    [SerializeField] private TrapdoorHinge trapdoor;
 
     private string currentInput = "";
 
@@ -26,12 +27,28 @@ public class KeyPad : MonoBehaviour
 
     public void PressEnter()
     {
-        if (currentInput == correctCode && door != null && door.isLocked)
+        bool success = false;
+
+        if (currentInput == correctCode)
         {
-            displayText.text = "OK";
-            door.Unlock();
+            if (door != null && door.isLocked)
+            {
+                door.Unlock();
+                success = true;
+            }
+
+            if (trapdoor != null && trapdoor.isLocked)
+            {
+                trapdoor.Unlock();
+                success = true;
+                trapdoor.isOpen = true;
+            }
         }
 
+        if (success)
+        {
+            displayText.text = "OK";
+        }
         else
         {
             displayText.text = "ERR";
