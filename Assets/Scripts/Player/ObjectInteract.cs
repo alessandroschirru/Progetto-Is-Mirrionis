@@ -19,7 +19,6 @@ public class ObjectInteract : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             TryGrabObject();
-            Debug.Log("Prova grab");
         }
 
         if (Input.GetMouseButtonUp(0) && grabbedObject != null)
@@ -77,7 +76,6 @@ public class ObjectInteract : MonoBehaviour
         grabbedObject.useGravity = true;
         grabbedObject.linearDamping = 0f;
         grabbedObject = null;
-        Debug.Log("Rilasciato");
     }
     void UpdateCrosshair()
     {
@@ -131,21 +129,51 @@ public class ObjectInteract : MonoBehaviour
         {
             if (hit.collider.CompareTag("Readable"))
             {
-                InteractWithReadable(hit.collider.gameObject);
+                InteractWithPuzzleOrReadable(hit.collider.gameObject);
                 return true;
             }
         }
         return false;
     }
-    void InteractWithReadable(GameObject readable)
+    void InteractWithPuzzleOrReadable(GameObject readable)
     {
-        canvasReadable = readable.transform.GetChild(0).gameObject;
-        canvasReadable.SetActive(true);
-        PauseManager.inPuzzle = true; 
-        crosshair.gameObject.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        Time.timeScale = 0f;
+        PairedPuzzle puzzleScript = readable.GetComponentInParent<PairedPuzzle>();
+
+        if (puzzleScript != null)
+        {
+            string puzzleID = puzzleScript.puzzleID;
+
+            if (GameStateManager.Instance != null && GameStateManager.Instance.IsPuzzleCompleted(puzzleID))
+            {
+                Debug.Log("Puzzle già completato, non apro la scena.");
+                // Facoltativo: mostra un messaggio a schermo o feedback visivo
+                return;
+            }
+
+            // Salva la posizione e rotazione del player
+            Transform playerTransform = GameObject.FindWithTag("Player").transform;
+            GameStateManager.Instance.SavePlayerState(playerTransform.position, playerTransform.rotation);
+
+            // Carica la scena del puzzle
+            SceneLoadManager.Instance.LoadPuzzleScene(puzzleID);
+        }
+        else
+        {
+            // È solo un foglio da leggere (canvas)
+            canvasReadable = readable.transform.GetChild(0).gameObject;
+            if (canvasReadable == null)
+            {
+                Debug.LogError("Canvas per lettura non trovato!");
+                return;
+            }
+
+            canvasReadable.SetActive(true);
+            PauseManager.inPuzzle = true;
+            crosshair.gameObject.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Time.timeScale = 0f;
+        }
     }
     public void ClosePuzzleOrReadable()
     {

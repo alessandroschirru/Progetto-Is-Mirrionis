@@ -13,13 +13,13 @@ public class WinningTriggerSlidingBlocks : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-
     private void Update()
     {
         if (mainBlock.transform.position == transform.position)
         {
             winningText.SetActive(true);
             boxCollider.enabled = true;
+            GameStateManager.Instance.MarkPuzzleAsCompleted("PuzzleSlidingBlocks");
         }
     }
 }

@@ -49,7 +49,7 @@ public class DraggableBlock : MonoBehaviour
             direction = (dragVector.y > 0) ? Vector3.up : Vector3.down;
 
         if (CanMoveInDirection(direction))
-        { 
+        {
             targetPosition = originalPosition + direction * gridCellSize * 2f;
             StartCoroutine(MoveToTarget(targetPosition));
             isDragging = false; // blocca ulteriori drag finché non rilascio
@@ -77,7 +77,7 @@ public class DraggableBlock : MonoBehaviour
 
     bool CanMoveInDirection(Vector3 direction)
     {
-        float rayLength = gridCellSize * 0.95f;
+        float rayLength = gridCellSize;
         Vector3 rayOrigin = transform.position + direction * 0.05f;
 
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, rayLength, obstacleLayer);

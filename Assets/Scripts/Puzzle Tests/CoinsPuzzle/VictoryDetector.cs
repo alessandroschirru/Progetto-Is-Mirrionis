@@ -31,6 +31,7 @@ public class VictoryDetector : MonoBehaviour
             {
                 victoryText.gameObject.SetActive(true);
                 victory = true;
+                GameStateManager.Instance.MarkPuzzleAsCompleted("PuzzleCoins");
             }
         }
     }
