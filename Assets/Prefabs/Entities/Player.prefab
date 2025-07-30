@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4485912976820585650}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -305,6 +305,7 @@ MonoBehaviour:
   crosshair: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  HintCanvas: {fileID: 0}
 --- !u!1 &8190491471894712822
 GameObject:
   m_ObjectHideFlags: 0

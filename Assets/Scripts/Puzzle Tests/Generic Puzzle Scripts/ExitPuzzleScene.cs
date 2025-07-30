@@ -20,6 +20,10 @@ public class ExitPuzzleScene : MonoBehaviour
         {
             SceneManager.LoadScene("ScenaTestAlessandro");
 
+            SceneManager.sceneLoaded += (scene, mode) =>
+            {
+                PuzzleLightManager.RefreshAllPuzzleLights(); // Metodo statico da chiamare se lo implementi
+            };
             if (coinsPuzzle)
             {
                 coinsPuzzle.SetActive(false);
