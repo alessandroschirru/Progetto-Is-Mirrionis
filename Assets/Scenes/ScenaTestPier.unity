@@ -3076,7 +3076,7 @@ GameObject:
   - component: {fileID: 1247228017}
   m_Layer: 3
   m_Name: Sphere-1
-  m_TagString: Block
+  m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4465,6 +4465,7 @@ GameObject:
   - component: {fileID: 1683078667}
   - component: {fileID: 1683078666}
   - component: {fileID: 1683078669}
+  - component: {fileID: 1683078670}
   m_Layer: 0
   m_Name: Piece-3S
   m_TagString: Untagged
@@ -4575,6 +4576,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expectedBlockName: Sphere-1
   lockBlock: 1
+--- !u!114 &1683078670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683078663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab20a4d7640bd61489a858cf01223544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 4390210845581972372}
 --- !u!114 &1745102710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5488,10 +5502,23 @@ PrefabInstance:
       value: Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5378409095155381320, guid: efde33574eadbc24597a01f93adfb3e0, type: 3}
+    - {fileID: 226334939751463532, guid: efde33574eadbc24597a01f93adfb3e0, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efde33574eadbc24597a01f93adfb3e0, type: 3}
+--- !u!114 &4390210845581972372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2690276621014224108, guid: efde33574eadbc24597a01f93adfb3e0, type: 3}
+  m_PrefabInstance: {fileID: 4390210845581972371}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a891a8488ce5f7249bcd8b77d5e6bd85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7024742954457256174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5891,5 +5918,5 @@ SceneRoots:
   - {fileID: 1586032132}
   - {fileID: 412353409}
   - {fileID: 548816049}
-  - {fileID: 4390210845581972371}
   - {fileID: 1497478043}
+  - {fileID: 4390210845581972371}
