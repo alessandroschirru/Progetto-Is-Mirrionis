@@ -1516,19 +1516,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1451863400202412484, guid: 36ffe4459c2a40d46a75383a376368af, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1559751576222637778, guid: 36ffe4459c2a40d46a75383a376368af, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2351082416206166395, guid: 36ffe4459c2a40d46a75383a376368af, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2456049092816979596, guid: 36ffe4459c2a40d46a75383a376368af, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3997058421771864719, guid: 36ffe4459c2a40d46a75383a376368af, type: 3}
       propertyPath: m_Type
@@ -1600,7 +1600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6079137135935437674, guid: 36ffe4459c2a40d46a75383a376368af, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6099902964192220736, guid: 36ffe4459c2a40d46a75383a376368af, type: 3}
       propertyPath: m_fontAsset
@@ -1688,7 +1688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6792632635766910651, guid: 36ffe4459c2a40d46a75383a376368af, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7158617352295749282, guid: 36ffe4459c2a40d46a75383a376368af, type: 3}
       propertyPath: m_Pivot.x
@@ -1789,6 +1789,10 @@ PrefabInstance:
     - target: {fileID: 7623266231588740351, guid: 36ffe4459c2a40d46a75383a376368af, type: 3}
       propertyPath: m_Name
       value: SettingsScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623266231588740351, guid: 36ffe4459c2a40d46a75383a376368af, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
