@@ -13,33 +13,44 @@ public class AudioSettingsController : MonoBehaviour
     public string sfxParameterName = "SFX Volume";
     public string musicParameterName = "Music Volume";
 
+    private const float MinDB = -80f;
+    private const float MaxDB = 0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        mainVolumeSlider.value = GetVolumeFromMixer(mainParameterName);
-        sfxVolumeSlider.value = GetVolumeFromMixer(sfxParameterName);
-        musicVolumeSlider.value = GetVolumeFromMixer(musicParameterName);
+        mainVolumeSlider.value = PlayerPrefs.GetFloat(mainParameterName, 100f);
+        sfxVolumeSlider.value = PlayerPrefs.GetFloat(sfxParameterName, 100f);
+        musicVolumeSlider.value = PlayerPrefs.GetFloat(musicParameterName, 100f);
+
+        SetVolume(mainVolumeSlider.value, mainParameterName);
+        SetVolume(sfxVolumeSlider.value, sfxParameterName);
+        SetVolume(musicVolumeSlider.value, musicParameterName);
 
         mainVolumeSlider.onValueChanged.AddListener(value => SetVolume(value, mainParameterName));
         sfxVolumeSlider.onValueChanged.AddListener(value => SetVolume(value, sfxParameterName));
         musicVolumeSlider.onValueChanged.AddListener(value => SetVolume(value, musicParameterName));
     }
 
-    public void SetVolume(float volume, string parameterName)
+    public void SetVolume(float sliderValue, string parameterName)
     {
+        float dB = Mathf.Lerp(MinDB, MaxDB, sliderValue / 100f);
 
-        Debug.Log("Setting" + parameterName + "to" + volume);
-        if (volume < 0.0001f) volume = 0.0001f;
-        audioMixer.SetFloat(parameterName, Mathf.Log10(volume) * 20);
-
+        audioMixer.SetFloat(parameterName, dB);
     }
 
     private float GetVolumeFromMixer(string parameterName)
     {
-        float currentVolume;
-        audioMixer.GetFloat(parameterName, out currentVolume);
-        Debug.Log("Current" + parameterName + ":" + currentVolume);
-        return Mathf.Pow(10, currentVolume / 20);
-    }
+        if (audioMixer.GetFloat(parameterName, out float dB))
+        {
+            float normalized = Mathf.Pow(10f, dB / 20f);
 
+            return Mathf.RoundToInt(normalized * 100f);
+        }
+        else
+        {
+            Debug.LogWarning($"Parametro {parameterName} non trovato nel mixer!");
+            return 100f; // default
+        }
+    }
 }

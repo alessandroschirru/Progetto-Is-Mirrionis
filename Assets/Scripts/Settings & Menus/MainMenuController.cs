@@ -5,6 +5,9 @@ using System.Collections;
 
 public class MainMenuController : MonoBehaviour
 {
+    [SerializeField] private GameObject MainMenuScreen;
+    [SerializeField] private GameObject settingsScreen;
+
     private void Start()
     {
 
@@ -12,9 +15,20 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("Outside");
     }
 
+    public void OpenSettings()
+    {
+        MainMenuScreen.SetActive(false);
+        settingsScreen.SetActive(true);
+    }
+
+    public void SaveSettingsAndBack()
+    {
+        MainMenuScreen.SetActive(true);
+        settingsScreen.SetActive(false);
+    }
 
     public void QuitGame()
     {
