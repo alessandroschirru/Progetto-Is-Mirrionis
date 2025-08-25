@@ -27,7 +27,10 @@ public class KeyHole : MonoBehaviour
 
         if(door != null)
         {
-            door.isLocked = false;
+            if (door.isLocked)
+            {
+                door.Unlock();
+            }
         }
 
         else

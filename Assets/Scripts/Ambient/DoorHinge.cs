@@ -13,6 +13,8 @@ public class DoorHinge : MonoBehaviour
     private Quaternion initialRotation;
     private Quaternion targetRotation;
 
+    public AudioSource doorAudioSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,6 +22,8 @@ public class DoorHinge : MonoBehaviour
         {
             initialRotation = doorPivot.transform.localRotation;
         }
+
+        isLocked = true;
     }
 
     // Update is called once per frame
@@ -50,10 +54,18 @@ public class DoorHinge : MonoBehaviour
         float targetY = isDoorOpen ? openAngle : 0f;
         targetRotation = Quaternion.Euler(0f, targetY, 0f);
         isAnimating = true;
+
+        if(doorAudioSource != null)
+        {
+            doorAudioSource.PlayOneShot(doorAudioSource.clip);
+        }
+
     }
 
     public void Unlock()
     {
         isLocked = false;
+
+        Debug.Log("Porta Sbloccata");
     }
 }
