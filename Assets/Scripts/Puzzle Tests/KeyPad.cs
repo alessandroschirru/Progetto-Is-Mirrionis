@@ -10,6 +10,8 @@ public class KeyPad : MonoBehaviour
     [SerializeField] private DoorHinge door;
     [SerializeField] private TrapdoorHinge trapdoor;
 
+    [SerializeField] private AudioSource keyBuzzer;
+
     private string currentInput = "";
 
     public void PressNumber(string number)
@@ -17,12 +19,22 @@ public class KeyPad : MonoBehaviour
         if (currentInput.Length >= maxDigits) return;
         currentInput += number;
         UpdateDisplay();
+
+        if (keyBuzzer != null)
+        {
+            keyBuzzer.PlayOneShot(keyBuzzer.clip);
+        }
     }
 
     public void PressCancel()
     {
         currentInput = "";
         UpdateDisplay();
+
+        if (keyBuzzer != null)
+        {
+            keyBuzzer.PlayOneShot(keyBuzzer.clip);
+        }
     }
 
     public void PressEnter()
@@ -53,6 +65,11 @@ public class KeyPad : MonoBehaviour
         {
             displayText.text = "ERR";
             Invoke(nameof(ResetInput), 1.5f);
+        }
+
+        if (keyBuzzer != null)
+        {
+            keyBuzzer.PlayOneShot(keyBuzzer.clip);
         }
     }
 

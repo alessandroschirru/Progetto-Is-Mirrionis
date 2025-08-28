@@ -37,6 +37,11 @@ public class AudioSettingsController : MonoBehaviour
         float dB = Mathf.Lerp(MinDB, MaxDB, sliderValue / 100f);
 
         audioMixer.SetFloat(parameterName, dB);
+
+        PlayerPrefs.SetFloat(parameterName, sliderValue);
+        PlayerPrefs.Save();
+
+        Debug.Log($"Salvato {parameterName} = {sliderValue}");
     }
 
     private float GetVolumeFromMixer(string parameterName)
