@@ -10,7 +10,7 @@ public class DraggableBlock : MonoBehaviour
     private bool isMoving = false;
     private Vector3 targetPosition;
 
-    public float gridCellSize = 1.0f;
+    public float gridCellSize = 1f;
     public float moveSpeed = 10f;
     public LayerMask obstacleLayer;
     public float dragThreshold = 0.4f;
@@ -77,7 +77,7 @@ public class DraggableBlock : MonoBehaviour
 
     bool CanMoveInDirection(Vector3 direction)
     {
-        float rayLength = gridCellSize;
+        float rayLength = gridCellSize * 1.5f;
         Vector3 rayOrigin = transform.position + direction * 0.05f;
 
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, rayLength, obstacleLayer);

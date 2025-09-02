@@ -5,7 +5,10 @@ public class ExitPuzzleScene : MonoBehaviour
 {
     public GameObject coinsPuzzle;
     public GameObject photoPuzzle;
-    public GameObject slidingBlocksPuzzle;
+    public GameObject tube1Puzzle;
+    public GameObject tube2Puzzle;
+    public GameObject tube3Puzzle;
+    public GameObject tube4Puzzle;
 
     private void Start()
     {
@@ -34,10 +37,25 @@ public class ExitPuzzleScene : MonoBehaviour
                 photoPuzzle.SetActive(false);
             }            
 
-            if (slidingBlocksPuzzle)
+            if (tube1Puzzle)
             {
-                slidingBlocksPuzzle.SetActive(false);
-            }         
+                tube1Puzzle.SetActive(false);
+            }
+
+            if (tube2Puzzle)
+            {
+                tube2Puzzle.SetActive(false);
+            }
+
+            if (tube3Puzzle)
+            {
+                tube3Puzzle.SetActive(false);
+            }
+
+            if (tube4Puzzle)
+            {
+                tube4Puzzle.SetActive(false);
+            }
         }
     }
 }

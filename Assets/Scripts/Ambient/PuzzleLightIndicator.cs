@@ -27,7 +27,5 @@ public class PuzzleLightIndicator : MonoBehaviour
 
         if (rend != null)
             rend.material.color = isCompleted ? completeColor : incompleteColor;
-
-        Debug.Log($"{gameObject.name} light color updated. Completed? {isCompleted}");
     }
 }

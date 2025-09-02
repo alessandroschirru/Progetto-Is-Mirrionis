@@ -5,6 +5,7 @@ public class WinningTriggerSlidingBlocks : MonoBehaviour
 
     public GameObject winningText;
     public GameObject mainBlock;
+    public int tubePuzzleNumber;
     private BoxCollider2D boxCollider;
 
 
@@ -19,7 +20,26 @@ public class WinningTriggerSlidingBlocks : MonoBehaviour
         {
             winningText.SetActive(true);
             boxCollider.enabled = true;
-            GameStateManager.Instance.MarkPuzzleAsCompleted("PuzzleSlidingBlocks");
+
+            switch (tubePuzzleNumber)
+            {
+                case 1:
+                    GameStateManager.Instance.MarkPuzzleAsCompleted("PuzzleTubes1");
+                    break;
+
+                case 2:
+                    GameStateManager.Instance.MarkPuzzleAsCompleted("PuzzleTubes2");
+                    break;
+
+                case 3:
+                    GameStateManager.Instance.MarkPuzzleAsCompleted("PuzzleTubes3");
+                    break;
+
+                case 4:
+                    GameStateManager.Instance.MarkPuzzleAsCompleted("PuzzleTubes4");
+                    break;
+            }
+
         }
     }
 }

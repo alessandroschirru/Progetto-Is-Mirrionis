@@ -50,6 +50,8 @@ public class ObjectInteract : MonoBehaviour
             {
                 TryToggleTrapdoor();
             }
+
+            IsLookingAtPickupable();
         }
 
         UpdateCrosshair();
@@ -86,7 +88,7 @@ public class ObjectInteract : MonoBehaviour
         {
             bool highlight = false;
 
-            if ((grabbableLayer == (grabbableLayer | (1 << hit.collider.gameObject.layer))) || hit.collider.CompareTag("Readable"))
+            if ((grabbableLayer == (grabbableLayer | (1 << hit.collider.gameObject.layer))) || hit.collider.CompareTag("Readable") || hit.collider.CompareTag("Pickupable"))
             {
                 highlight = true;
             }
@@ -98,10 +100,10 @@ public class ObjectInteract : MonoBehaviour
             }
             else
             {
-                if(HintCanvas != null) HintCanvas.SetActive(false);
+                if (HintCanvas != null) HintCanvas.SetActive(false);
             }
 
-                crosshair.color = highlight ? highlightColor : defaultColor;
+            crosshair.color = highlight ? highlightColor : defaultColor;
             return;
         }
 
@@ -184,7 +186,6 @@ public class ObjectInteract : MonoBehaviour
         Cursor.visible = false;
         Time.timeScale = 1f;
     }
-
     bool TryToggleDoor()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -199,7 +200,6 @@ public class ObjectInteract : MonoBehaviour
         }
         return false;
     }
-
     bool TryToggleTrapdoor()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -214,22 +214,27 @@ public class ObjectInteract : MonoBehaviour
         }
         return false;
     }
-
     bool IsLookingAtDoor()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         return Physics.Raycast(ray, out RaycastHit hit, grabDistance) && hit.collider.CompareTag("Door");
     }
-
     bool IsLookingAtReadable()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         return Physics.Raycast(ray, out RaycastHit hit, grabDistance) && hit.collider.CompareTag("Readable");
     }
-
     bool isLookingAtTrapdoor()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         return Physics.Raycast(ray, out RaycastHit hit, grabDistance) && hit.collider.CompareTag("Trapdoor");
+    }
+    void IsLookingAtPickupable()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, grabDistance) && hit.collider.CompareTag("Pickupable"))
+        {
+            Destroy(hit.collider.gameObject);
+        }        
     }
 }

@@ -13,7 +13,6 @@ public class PuzzleLightManager : MonoBehaviour
 
         foreach (var light in lights)
         {
-            Debug.Log($"[LIGHT REFRESH] {light.name} → puzzleID: {light.puzzleID}");
             light.UpdateLight();
         }
     }

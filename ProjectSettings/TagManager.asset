@@ -15,6 +15,7 @@ TagManager:
   - Switch
   - Table
   - Trapdoor
+  - Pickupable
   layers:
   - Default
   - TransparentFX
