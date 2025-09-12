@@ -90,14 +90,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1482431028428892785, guid: 77d0f5dcd4fb17448b6eb9086bad2ddf, type: 3}
       propertyPath: m_text
-      value: "\rGiorno 42\n\r\nLuca \xE8 il terzo. \nParla con le ombre. \nIl macchinario
-        della mente si \xE8 attivato appena l\u2019ho collegato. \r\nLe sue parole
-        mi hanno confuso. \nHo avuto incubi, sogni in cui Maria mi accusava. \nNe
-        manca uno \r                       solo..."
+      value: "\rGiorno 42\n\r\nLuca era venuto da me. Ormai lui ha preso il posto
+        di Maria al fianco dei genitori nella preghiera, nella flebile speranza che
+        possa colmare il vuoto. Ma quel tipo di fede non mi basta. A differenza loro
+        io so cosa devo fare, ho trovato la cura al pi\xF9 grande male dell\u2019uomo,
+        ho superato ogni limite.\r\nOra che la macchina sta estraendo la sua essenza,
+        vedo nel liquido delle immagini sfuggenti del passato, l\u2019auto\u2026
+        Maria.\r\nSono riuscito a vederla, lei mi chiamava\u2026 Perch\xE9 mi accusa?
+        Non capisce che tutto questo \xE8 solo per lei?!\r\nNon posso che andare
+        avanti, ne manca solo uno\u2026\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4198170752144410124, guid: 77d0f5dcd4fb17448b6eb9086bad2ddf, type: 3}
       propertyPath: m_Name
-      value: nota Variant
+      value: Nota - Diario giorno 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728695193651716507, guid: 77d0f5dcd4fb17448b6eb9086bad2ddf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -280
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

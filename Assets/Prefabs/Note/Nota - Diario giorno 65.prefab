@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2410798499764480451, guid: 3295f14611273f949b688c663778653d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -248
+      value: -202
       objectReference: {fileID: 0}
     - target: {fileID: 6104189031553699412, guid: 3295f14611273f949b688c663778653d, type: 3}
       propertyPath: m_Name
@@ -98,11 +98,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8819788261520957993, guid: 3295f14611273f949b688c663778653d, type: 3}
       propertyPath: m_text
-      value: "Giorno 65\n\r\nHo capito... SErVe uN cAtaLiZZatOre. SeRVe mE\n Il MIO
-        dOLorE, lA mIA voLOnT\xE0, la mia ESSENZA\nHo pianto davanti allo specchio\nHo
-        visto un uomo spezzato... \n\nHo inciso il mio nome sul metallo del nucleo.
-        \nHo iniziato a scrivere formule sul muro, con il sangue\n NON c\u2019\xE8
-        tEmPo \n\tDEVo fINiRe \n\t\tDEVO FARLO ORA"
+      value: "Giorno 65\n\r\nper tutto questo tempo non avevo compreso \r\nserve
+        qualcosa in pi\xF9 per completare il mio lavoro \r\nnon riuscir\xF2 a vederla
+        ma lei sar\xE0 nuovamente qui\r\nho paura\u2026 ed \xE8 il mio unico ostacolo."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -90,14 +90,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2073249580977635817, guid: aa5517cea7be96f4eb97d37f99598599, type: 3}
       propertyPath: m_text
-      value: "\rGiorno 35\n\r\nElena \xE8 la seconda. Il suo corpo \xE8 leggero,
-        quasi irreale. Il macchinario del corpo reagisce a ogni suo movimento. \nHo
-        paura che stesse capendo quali fossero le mie intenzioni. \nMi ha guardato
-        con compassione, e io ho tremato.\r\n"
+      value: "\rGiorno 35\n\r\nLa seconda era ormai decisa da tempo, Elena era perfetta.\r\nLei
+        era una sua docente universitaria, una donna brillante capace di coinvolgere
+        gli studenti, ma soprattutto in grado di aprire le loro menti. O almeno\u2026
+        cos\xEC diceva Maria.\r\nEro spaventato, non sapevo come potermi avvicinare
+        a lei, troppo sveglia per seguirmi con una scusa, ho dovuto agire con la
+        forza tramortendola.\r\nNon pensavo si sarebbe ripresa prima che la macchina
+        avesse concluso, mi ha guardato spaventata, ma poi il suo viso \xE8 mutato\u2026
+        sembrava arrabbiata.  \r\nMa adesso che la macchina ha finito, non sar\xF2
+        pi\xF9 costretto a sopportare i racconti su di lei. "
       objectReference: {fileID: 0}
     - target: {fileID: 3609046478307437972, guid: aa5517cea7be96f4eb97d37f99598599, type: 3}
       propertyPath: m_Name
-      value: nota Variant
+      value: Nota - Diario giorno 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5176719846451841539, guid: aa5517cea7be96f4eb97d37f99598599, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -298
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

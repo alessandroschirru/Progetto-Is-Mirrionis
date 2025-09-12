@@ -98,11 +98,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8212517616693407837, guid: 6edd8d89b76d3494f875ef5fdd75c19e, type: 3}
       propertyPath: m_text
-      value: "Giorno 73\n\r\nNON dORmo pI\xF9\nOgni rumore mi fa SOBBALZARE\nHo pAuRa
-        che mI scOPrAno. \n\tMA NON posso FERMARMI.\n\n\r\nMARIA ASPETTA\n\nLE   
-        mIe   mani   treMAnO    iL  CuOrE   BAttE    foRTe. \n\nHo inIZiato A parRLarRe
-        da soloO \nLE \r     \n  V ALVO OL EE \n             M Ii \n                   
-        RISP oNDoN nO\r\n"
+      value: "Giorno 73\n\r\nMaria non mi risponde pi\xF9, non viene pi\xF9 a trovarmi\u2026
+        Eppure pensavo che i rumori dentro la struttura\r\nechi nel buio\r\nombre,
+        ombre che prendono il loro aspetto\u2026 MI OSSERVANO sento i loro sussurri,
+        DICONO CHE STANNO VENENDO PER ME\r\nNon possono avermi scoperto, non ho fatto
+        errori.\r\nIl telefono si \xE8 rotto cadendo nel liquido del macchinario,
+        l\u2019orologio era fermo gi\xE0 da un paio di giorni, ma non posso rischiare
+        uscendo da qui\u2026"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4077268046374980343, guid: 8692138a9a824d1438286ca3253c7821, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -225
+      value: -254
       objectReference: {fileID: 0}
     - target: {fileID: 5573154291212021088, guid: 8692138a9a824d1438286ca3253c7821, type: 3}
       propertyPath: m_Name
-      value: nota Variant
+      value: Nota - Diario giorno 12
       objectReference: {fileID: 0}
     - target: {fileID: 5573154291212021088, guid: 8692138a9a824d1438286ca3253c7821, type: 3}
       propertyPath: m_IsActive
@@ -22,12 +22,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7171863007296160029, guid: 8692138a9a824d1438286ca3253c7821, type: 3}
       propertyPath: m_text
-      value: "Giorno 12\n\r\nIl laboratorio prende forma. \nHo isolato le pareti,
-        installato generatori e ho iniziato a costruire i primi\r                               
-        macchinari.                                                                                  
-        Quattro dispositivi: \nuno per l\u2019anima, uno per il corpo, uno per la
-        mente, uno per la \r\nmemoria. \nLazarus li fonder\xE0. \n\nOgni saldatura
-        \xE8 una preghiera, ogni impulso un battito del mio cuore.\r\n"
+      value: "Giorno 12\n\r\n\rIn fondo alle gallerie ho trovato una vecchia struttura
+        che posso sfruttare. Al suo interno sono contenuti dei vecchi macchinari.\r\n\xC8
+        un miracolo, un segno del destino\u2026 L\u2019impianto elettrico sembra
+        ancora in buono stato. Ho portato dei generatori, li ho collegati e sembra
+        andare. Ho trovato anche delle vecchie vasche e una serie di tubature, serviranno
+        da base per ci\xF2 che ho in mente.\r\nAdesso necessito dei quattro elementi:
+        il corpo, la mente, la memoria e l\u2019anima\u2026 Dovr\xF2 solo estrarne
+        l\u2019essenza, fonderli e la riavr\xF2 con me.\n"
       objectReference: {fileID: 0}
     - target: {fileID: 7171863007296160029, guid: 8692138a9a824d1438286ca3253c7821, type: 3}
       propertyPath: m_margin.w

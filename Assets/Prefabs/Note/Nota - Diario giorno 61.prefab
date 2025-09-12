@@ -14,10 +14,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3347501436096425472, guid: b38379a471a08e749a0f8781946b373c, type: 3}
       propertyPath: m_text
-      value: "Giorno 61\n\r\nLazarus \xE8 quasi pronto!\nMa qualcosa manca... I dAtI
-        NOn si alLIneAno. LE enERgie nOn Si fondONO. \nHo lanciato una chiave inglese
-        contro il muro. HO URLATO. HO ROTTO UN TUBO. \nIl liquido vitale si \xE8
-        sparso sul pavimento e HO RISO, HO RISO COME UN FOLLE"
+      value: 'Giorno 61
+
+        
+
+        NON FUNZIONA NON FUNZIONA NON FUNZIONA
+        NON FUNZIONA NON FUNZIONA NON FUNZIONA NON FUNZIONA NON FUNZIONA NON FUNZIONA
+        NON FUNZIONA NON FUNZIONA NON FUNZIONA
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 4196864275626992842, guid: b38379a471a08e749a0f8781946b373c, type: 3}
       propertyPath: m_Pivot.x
@@ -101,7 +106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8459580987125229034, guid: b38379a471a08e749a0f8781946b373c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -209
+      value: -182
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

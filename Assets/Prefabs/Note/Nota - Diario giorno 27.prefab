@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2725867929828694241, guid: 8b116e88aba1e28498dd7c9d5666696b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -184
+      value: -264
       objectReference: {fileID: 0}
     - target: {fileID: 5770999618809118582, guid: 8b116e88aba1e28498dd7c9d5666696b, type: 3}
       propertyPath: m_Name
-      value: nota Variant
+      value: Nota - Diario giorno 27
       objectReference: {fileID: 0}
     - target: {fileID: 7677515537586903489, guid: 8b116e88aba1e28498dd7c9d5666696b, type: 3}
       propertyPath: m_Pivot.x
@@ -98,10 +98,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9135257961647428363, guid: 8b116e88aba1e28498dd7c9d5666696b, type: 3}
       propertyPath: m_text
-      value: "Giorno 27\n\r\nMarco \xE8 il primo. L\u2019ho attirato con una scusa.
-        \nI suoi occhi vedono troppo.  \nL\u2019ho collegato al \r                             
-        macchinario dell\u2019anima. \nI suoi lamenti mi perseguitano.     Ho pianto
-        quella notte, ma non mi sono \r         fermato."
+      value: "Giorno 27\n\r\n\rIl primo \xE8 stato facile da scegliere, forse anche
+        il pi\xF9 scontato.\r\nPensavo che non l'avrei mai perdonato per quello che
+        le ha fatto, per quello che l\u2019ha portata a fare. Eppure eccomi a tremare
+        nel mentre ripenso a ci\xF2 che \xE8 successo a Marco\u2026\r\nNon riesco
+        a chiudere occhio e le lacrime continuano a scorrere\u2026\r\nLa macchina
+        ha estratto senza problemi l\u2019essenza del corpo, vedo delle luci muoversi
+        nel liquido vischioso, riesco quasi a sentire la sua voce\u2026\r\n"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

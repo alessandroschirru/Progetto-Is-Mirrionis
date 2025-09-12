@@ -94,14 +94,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3699417693909698794, guid: 2d0d0cad34fdd9e4892c67fd93e96806, type: 3}
       propertyPath: m_text
-      value: "Giorno 80\n\r\nIl casermone rESpiIrA  MI OSSERVA \nFoRSe \n\tmi gIuUdiCa...
-        \n\nMa io ho scelto.\n\n \nLAZARUS funzioner\xE0.\n\n \nE se non funzioner\xE0,
-        almeno avr\xF2 provato.\n \nHo acceso tutti i macchinari\n \nLe luci tremano 
-        Il nucleo pulsa \n\nIl tempo \xE8 finito. \n\nOra o mai pi\xF9..."
+      value: "Giorno ??\n\r\nLe mani mi tremano ma non posso attendere oltre.\r\nOra
+        o mai pi\xF9."
       objectReference: {fileID: 0}
     - target: {fileID: 7513189509582029568, guid: 2d0d0cad34fdd9e4892c67fd93e96806, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -304
+      value: -163
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

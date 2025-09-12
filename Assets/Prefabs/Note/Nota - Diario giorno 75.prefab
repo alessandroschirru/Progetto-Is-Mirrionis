@@ -90,10 +90,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1762797679038815716, guid: c1899afe117a06f4c99cbbae9eb96dbe, type: 3}
       propertyPath: m_text
-      value: "Giorno 75\n\r\nHo naScoSTo i cORPI\n\nHo canCelLato l eE trACc e\n\nMa
-        le VOCI RESTANO\n\nLE SENTO NEI TUBI  \n\t\t\t\tNEI MURI\n \nForse sono io     
-        Forse sono loro \n\nHo chiuso TUTTE le porte. Ho creato dei meccanismi di
-        sicurezza.\n \nNESSUNO DEVE ENTRARE \n\t\tNESSUNO DEVE VEDERE\r\n"
+      value: "Giorno 75?\n\r\nHo nascosto i resti\r\nHo cancellato ogni traccia ma
+        gli echi rimangono\u2026 attraverso le tubature, nei muri sento lo scorrere
+        dei liquidi delle macchine, sembra come il sangue all\u2019interno di un
+        corpo e le pareti pulsano\r\nHo preso coraggio e ho attraversato le gallerie,
+        sono risalito in superficie e ho rivisto il cielo, ho corso per la strada.
+        Il cuore mi scoppiava\u2026 ma sono riuscito a imbucare la lettera e sono
+        tornato al casermone.\r\nCredo mi abbiano visto, nel mio passaggio ho bloccato
+        l\u2019entrata alle gallerie con una botola, e ho creato dei meccanismi per
+        bloccare la porta del laboratorio.\r\nSpero basti\u2026\r\nNon lascer\xF2
+        che qualcun'altro lo veda.\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 3938105416331309465, guid: c1899afe117a06f4c99cbbae9eb96dbe, type: 3}
       propertyPath: m_Name
@@ -101,7 +107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4856140307707827726, guid: c1899afe117a06f4c99cbbae9eb96dbe, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -279
+      value: -294
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

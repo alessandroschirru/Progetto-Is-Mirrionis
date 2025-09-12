@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -499, y: -231}
+  m_AnchoredPosition: {x: -499, y: -287}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &699047420858585295
@@ -65,11 +65,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Giorno 1\n\r\nHo scelto il casermone abbandonato. Le sue fondamenta sono
-    solide, ma le pareti trasudano ricordi. \r\nHo iniziato a scavare sotto la struttura,
-    cercando uno spazio che potesse contenere il mio \r\nlaboratorio. \nOgni colpo
-    di piccone era un passo verso Maria. Il sudore mi bruciava gli occhi, ma il \r                            
-    pensiero di lei mi dava forza.\r\n"
+  m_text: "Giorno 1\n\r\nHo scelto il casermone della piazzetta senza nome di is
+    Mirrionis, mi sembra il luogo adatto. L\u2019aspetto decadente della struttura
+    terr\xE0 lontano gli estranei, mi aiuter\xE0 a lavorare senza troppi pensieri,
+    mi serve la massima concentrazione.\r\nHo deciso di scavare nel cuore della notte,
+    dove le fondamenta hanno ceduto, e ho trovato delle gallerie naturali. Sembra
+    esserci abbastanza spazio per i lavori.\r\nNel buio, a volte, mi sembra di scorgere
+    qualcosa, figure indefinite, scherzi della mente di un uomo solo.\r\nMa presto\u2026
+    presto non sar\xF2 pi\xF9 solo. La riavr\xF2 tra le mie braccia, sar\xE0 di nuovo
+    con me\u2026\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bf8a6c7f890be644892b157dd7d09a34, type: 2}
   m_sharedMaterial: {fileID: -3291700614881334711, guid: bf8a6c7f890be644892b157dd7d09a34, type: 2}

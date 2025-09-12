@@ -8,11 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1452145037423552512, guid: 2ea3aad42427c1b4ca329e0a36011d71, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -256
+      objectReference: {fileID: 0}
     - target: {fileID: 5707680239860474858, guid: 2ea3aad42427c1b4ca329e0a36011d71, type: 3}
       propertyPath: m_text
-      value: "Giorno 50\n\r\nSofia \xE8 l'ultima, rideva in maniera isterica. \nLA
-        SUA MEMORIA E' POTENTE. \nIl macchinario vibra con i suoi ricordi. \nHo registrato
-        tutto. \nMa la sua risata mi lacera. \nSeNtO che stO perDeNdO me stEsSo\r\n"
+      value: "Giorno 50\n\r\nSorella Sofia, non faceva che strillare. Invocava il
+        suo dio e mi implorava di fermarmi.\r\nTroppe volte ho sentito il suo nome
+        uscire dalle sue labbra, ho sentito abbastanza.\r\nIl sangue non verr\xE0
+        via facilmente, ha sporcato i cavi, dovr\xF2 asciugare tutto prima di mettere
+        la macchina in funzione.\r\nLa luce nella vasca danza. Sento sempre pi\xF9
+        forte la sua voce, riesco a sentire la sua presenza di fianco a me."
       objectReference: {fileID: 0}
     - target: {fileID: 6593049897996609824, guid: 2ea3aad42427c1b4ca329e0a36011d71, type: 3}
       propertyPath: m_Pivot.x
@@ -96,7 +103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7054187142735695767, guid: 2ea3aad42427c1b4ca329e0a36011d71, type: 3}
       propertyPath: m_Name
-      value: nota Variant
+      value: Nota - Diario giorno 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
