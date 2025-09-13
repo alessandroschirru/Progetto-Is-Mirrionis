@@ -14,6 +14,10 @@ public class TrapdoorHinge : MonoBehaviour
     Quaternion initialRotation;
     Quaternion targetRotation;
 
+    public AudioSource TrapdoorAudioSource;
+    public AudioClip openingClip;
+    public AudioClip unlockingClip;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -43,6 +47,7 @@ public class TrapdoorHinge : MonoBehaviour
             {
                 hingePivot.transform.localRotation = targetRotation;
                 isAnimating = false;
+                isOpen = Mathf.Approximately(targetRotation.eulerAngles.z, openAngle);
             }
         }
     }
@@ -51,15 +56,23 @@ public class TrapdoorHinge : MonoBehaviour
     {
         if (isLocked || isAnimating || hingePivot == null) return;
 
-        isOpen = !isOpen;
-        float angle = isOpen ? openAngle : 0f;
+        float startZ = hingePivot.transform.localRotation.eulerAngles.z;
+        float targetZ = isOpen ? 0f : openAngle;
 
-        targetRotation = initialRotation * Quaternion.Euler(0f, 0f, angle);
+        targetRotation = Quaternion.Euler(
+            initialRotation.eulerAngles.x,
+            initialRotation.eulerAngles.y,
+            targetZ
+            );
+
         isAnimating = true;
+
+        TrapdoorAudioSource.PlayOneShot(openingClip);
     }
 
     public void Unlock()
     {
         isLocked = false;
+        TrapdoorAudioSource.PlayOneShot(unlockingClip);
     }
 }

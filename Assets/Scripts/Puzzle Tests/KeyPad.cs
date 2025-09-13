@@ -53,7 +53,6 @@ public class KeyPad : MonoBehaviour
             {
                 trapdoor.Unlock();
                 success = true;
-                trapdoor.isOpen = true;
             }
         }
 

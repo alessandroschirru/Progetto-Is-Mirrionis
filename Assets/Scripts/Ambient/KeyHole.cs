@@ -3,6 +3,7 @@ using UnityEngine;
 public class KeyHole : MonoBehaviour
 {
     public DoorHinge door;
+    public AudioSource keyholeAudioSource;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,6 +27,9 @@ public class KeyHole : MonoBehaviour
             if (door != null && door.isLocked)
             {
                 door.Unlock();
+
+                keyholeAudioSource.PlayOneShot(keyholeAudioSource.clip);
+
                 Debug.Log($"Porta sbloccata!");
             }
             else if (door == null)
