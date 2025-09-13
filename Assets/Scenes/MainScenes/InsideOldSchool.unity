@@ -5335,6 +5335,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 86d9f291421c4d041a4a2f2791e6ff94, type: 2}
+    - target: {fileID: 5568731077856996248, guid: efde33574eadbc24597a01f93adfb3e0, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5568731077856996248, guid: efde33574eadbc24597a01f93adfb3e0, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5944934576578306779, guid: efde33574eadbc24597a01f93adfb3e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -90.81
@@ -11043,12 +11051,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2690276621014224108, guid: efde33574eadbc24597a01f93adfb3e0, type: 3}
+      propertyPath: animatingClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a80d4f5c6c96dab4e95f2b4be960175a, type: 3}
+    - target: {fileID: 2690276621014224108, guid: efde33574eadbc24597a01f93adfb3e0, type: 3}
       propertyPath: interactionCanvas
       value: 
       objectReference: {fileID: 1826825242}
     - target: {fileID: 5568731077856996248, guid: efde33574eadbc24597a01f93adfb3e0, type: 3}
       propertyPath: m_Volume
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5568731077856996248, guid: efde33574eadbc24597a01f93adfb3e0, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5568731077856996248, guid: efde33574eadbc24597a01f93adfb3e0, type: 3}
+      propertyPath: m_audioClip
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7250391614284445875, guid: efde33574eadbc24597a01f93adfb3e0, type: 3}
       propertyPath: m_Name

@@ -11,31 +11,27 @@ public class KeyHole : MonoBehaviour
             Debug.Log("Chiave inserita");
 
             other.transform.position = transform.position;
-            other.transform.rotation =transform.rotation;
+            other.transform.rotation = transform.rotation;
             other.transform.SetParent(transform);
 
             Rigidbody rb = other.GetComponent<Rigidbody>();
-            if(rb != null)
+            if (rb != null)
             {
                 rb.useGravity = false;
                 rb.constraints = RigidbodyConstraints.FreezeAll;
             }
-            
-            other.gameObject.layer = LayerMask.NameToLayer("Default");
-            Debug.Log($"Porta sbloccata!");
-        }
 
-        if(door != null)
-        {
-            if (door.isLocked)
+            other.gameObject.layer = LayerMask.NameToLayer("Default");
+
+            if (door != null && door.isLocked)
             {
                 door.Unlock();
+                Debug.Log($"Porta sbloccata!");
             }
-        }
-
-        else
-        {
-            Debug.LogWarning("Nessuna porta collegata al KeyHole!");
+            else if (door == null)
+            {
+                Debug.LogWarning("Nessuna porta collegata al KeyHole!");
+            }
         }
     }
 
