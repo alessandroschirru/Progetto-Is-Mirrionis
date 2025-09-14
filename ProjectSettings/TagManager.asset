@@ -16,6 +16,7 @@ TagManager:
   - Table
   - Trapdoor
   - Pickupable
+  - Draggable
   layers:
   - Default
   - TransparentFX

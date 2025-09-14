@@ -13,7 +13,8 @@ public class ObjectInteract : MonoBehaviour
     private Rigidbody grabbedObject = null;
     private GameObject canvasReadable;
     public GameObject HintCanvas;
-
+    private ObjectDrag currentDrag = null;
+    private RaycastHit lastHit;
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -52,6 +53,27 @@ public class ObjectInteract : MonoBehaviour
             }
 
             IsLookingAtPickupable();
+        }
+
+        if (Input.GetKey(KeyCode.E) && IsLookingAtDraggable())
+        {
+            if (currentDrag == null)
+            {
+                currentDrag = lastHit.collider.GetComponent<ObjectDrag>();
+                if (currentDrag != null)
+                    currentDrag.StartDragging();
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.E) && currentDrag != null)
+        {
+            currentDrag.StopDragging();
+            currentDrag = null;
+        }
+
+        if (currentDrag != null && currentDrag.IsDragging())
+        {
+            currentDrag.ContinueDragging();
         }
 
         UpdateCrosshair();
@@ -93,7 +115,7 @@ public class ObjectInteract : MonoBehaviour
                 highlight = true;
             }
 
-            if (hit.collider.CompareTag("Door") || hit.collider.CompareTag("Trapdoor"))
+            if (hit.collider.CompareTag("Door") || hit.collider.CompareTag("Trapdoor") || hit.collider.CompareTag("Draggable"))
             {
                 highlight = true;
                 if (HintCanvas != null) HintCanvas.SetActive(true);
@@ -236,5 +258,15 @@ public class ObjectInteract : MonoBehaviour
         {
             Destroy(hit.collider.gameObject);
         }        
+    }
+    bool IsLookingAtDraggable()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, grabDistance) && hit.collider.CompareTag("Draggable"))
+        {
+            lastHit = hit;
+            return true;
+        }
+        return false;
     }
 }

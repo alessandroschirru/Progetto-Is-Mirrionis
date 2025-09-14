@@ -17,6 +17,7 @@ public class TrapdoorHinge : MonoBehaviour
     public AudioSource TrapdoorAudioSource;
     public AudioClip openingClip;
     public AudioClip unlockingClip;
+    public AudioClip lockedClip;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -54,7 +55,13 @@ public class TrapdoorHinge : MonoBehaviour
 
     public void ToggleTrapdoor()
     {
-        if (isLocked || isAnimating || hingePivot == null) return;
+        if (isAnimating || hingePivot == null) return;
+
+        if (isLocked)
+        {
+            TrapdoorAudioSource.PlayOneShot(lockedClip);
+            return;
+        }
 
         float startZ = hingePivot.transform.localRotation.eulerAngles.z;
         float targetZ = isOpen ? 0f : openAngle;
