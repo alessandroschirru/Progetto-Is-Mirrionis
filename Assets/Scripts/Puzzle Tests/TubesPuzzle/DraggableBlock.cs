@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class DraggableBlock : MonoBehaviour
 {
@@ -17,15 +18,11 @@ public class DraggableBlock : MonoBehaviour
 
     public bool isDraggable = true;
 
-    private void Start()
-    {
-        cam = Camera.main;
-    }
+    void Start() { cam = Camera.main; }
 
     void OnMouseDown()
     {
-        if (isMoving) return; // evita nuovi movimenti mentre uno è in corso
-
+        if (isMoving) return;
         isDragging = true;
         offset = transform.position - GetMouseWorldPosition();
         originalPosition = transform.position;
@@ -37,52 +34,44 @@ public class DraggableBlock : MonoBehaviour
 
         Vector3 currentMousePos = GetMouseWorldPosition() + offset;
         Vector3 dragVector = currentMousePos - originalPosition;
-
         if (dragVector.magnitude < dragThreshold) return;
 
-        Vector3 direction = Vector3.zero;
-
-        // Direzione dominante (asse X o Y)
-        if (Mathf.Abs(dragVector.x) > Mathf.Abs(dragVector.y))
-            direction = (dragVector.x > 0) ? Vector3.right : Vector3.left;
-        else
-            direction = (dragVector.y > 0) ? Vector3.up : Vector3.down;
+        Vector3 direction = (Mathf.Abs(dragVector.x) > Mathf.Abs(dragVector.y))
+            ? (dragVector.x > 0 ? Vector3.right : Vector3.left)
+            : (dragVector.y > 0 ? Vector3.up : Vector3.down);
 
         if (CanMoveInDirection(direction))
         {
             targetPosition = originalPosition + direction * gridCellSize * 2f;
             StartCoroutine(MoveToTarget(targetPosition));
-            isDragging = false; // blocca ulteriori drag finché non rilascio
+            isDragging = false;
         }
     }
 
-    void OnMouseUp()
-    {
-        isDragging = false;
-    }
+    void OnMouseUp() { isDragging = false; }
 
-    private System.Collections.IEnumerator MoveToTarget(Vector3 target)
+    IEnumerator MoveToTarget(Vector3 target)
     {
         isMoving = true;
-        while ((transform.position - target).sqrMagnitude > 0.001f)
+        while ((transform.position - target).sqrMagnitude > 0.0001f)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
             yield return null;
         }
-
         transform.position = target;
         originalPosition = target;
         isMoving = false;
+
+        // ridondante (gli Enter/Exit l'hanno già fatto), ma utile come safety net
+        TubesPath.RebuildPathStatic();
     }
 
     bool CanMoveInDirection(Vector3 direction)
     {
         float rayLength = gridCellSize * 1.5f;
         Vector3 rayOrigin = transform.position + direction * 0.05f;
-
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, rayLength, obstacleLayer);
         Debug.DrawRay(rayOrigin, direction * rayLength, Color.red, 1f);
-
         return hit.collider == null;
     }
 
