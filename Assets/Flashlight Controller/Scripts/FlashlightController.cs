@@ -104,7 +104,7 @@ public class FlashlightController : MonoBehaviour
             return;
 
         //Come il tasto viene rilasciato cambia stato della torcia
-        if (Input.GetKeyDown(toggleKey))
+        if (Input.GetKeyDown(toggleKey) && Time.timeScale == 1f)
             ToggleTorch();
     }
 

@@ -18,7 +18,10 @@ public class DraggableBlock : MonoBehaviour
 
     public bool isDraggable = true;
 
-    void Start() { cam = Camera.main; }
+    void Start() 
+    { 
+        cam = Camera.main; 
+    }
 
     void OnMouseDown()
     {

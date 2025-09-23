@@ -624,6 +624,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 19426671048598253, guid: 3a322349e561fd143b73d03c1ab7d779, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -900
+      objectReference: {fileID: 0}
     - target: {fileID: 868808171204913404, guid: 3a322349e561fd143b73d03c1ab7d779, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -704,10 +708,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3835011750089282609, guid: 3a322349e561fd143b73d03c1ab7d779, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -700
+      objectReference: {fileID: 0}
     - target: {fileID: 4969297646086256102, guid: 3a322349e561fd143b73d03c1ab7d779, type: 3}
       propertyPath: settingsScreen
       value: 
       objectReference: {fileID: 2088009037}
+    - target: {fileID: 5501748831156738514, guid: 3a322349e561fd143b73d03c1ab7d779, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -500
+      objectReference: {fileID: 0}
     - target: {fileID: 9206793651081490297, guid: 3a322349e561fd143b73d03c1ab7d779, type: 3}
       propertyPath: m_Name
       value: MainMenuCanvas
