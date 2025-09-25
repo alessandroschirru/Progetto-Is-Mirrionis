@@ -1,9 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
+
+    public static PauseManager instance;
+
+
     [Header("Canvas da mostrare/attivare")]
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject settingsScreen;
@@ -11,10 +16,22 @@ public class PauseManager : MonoBehaviour
     [HideInInspector] static public bool inPuzzle = false;
     public GameObject player;
 
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && !LettersList.instance.letterOpen)
         {
             TogglePause();
         }
@@ -62,11 +79,19 @@ public class PauseManager : MonoBehaviour
         settingsScreen.SetActive(true);
     }
 
-    public void BackToMenu()
+    public void BackToMainPause()
     {
         settingsScreen.SetActive(false);
         pauseScreen.SetActive(true);
     }
+
+
+    public void BackToMenu()
+    {        
+        SceneManager.LoadScene("MainMenu");
+        pauseScreen.SetActive(false);
+    }
+
 
     public void QuitGame()
 {

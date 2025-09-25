@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
 
     void Awake()
-    {
+    { 
         inputActions = new PlayerInputActions();
         inputActions.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         inputActions.Player.Move.canceled += ctx => moveInput = Vector2.zero;

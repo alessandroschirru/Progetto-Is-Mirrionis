@@ -15,6 +15,7 @@ public class ObjectInteract : MonoBehaviour
     public GameObject HintCanvas;
     private ObjectDrag currentDrag = null;
     private RaycastHit lastHit;
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -36,10 +37,14 @@ public class ObjectInteract : MonoBehaviour
         {
             ClosePuzzleOrReadable();
         }
-
         else if (Input.GetKeyDown(KeyCode.E) && Time.timeScale != 0f && !PauseManager.isPaused)
         {
-            if (IsLookingAtDoor())
+            // --- ORDINATI PER PRIORITÀ DI INTERAZIONE ---
+            if (IsLookingAtLever())                  // LEVER
+            {
+                TryToggleLever();                    // LEVER
+            }
+            else if (IsLookingAtDoor())
             {
                 TryToggleDoor();
             }
@@ -88,6 +93,7 @@ public class ObjectInteract : MonoBehaviour
             grabbedObject.linearDamping = 10f;
         }
     }
+
     void HoldObject()
     {
         Vector3 holdPosition = Camera.main.transform.position + Camera.main.transform.forward * holdDistance;
@@ -95,12 +101,14 @@ public class ObjectInteract : MonoBehaviour
 
         grabbedObject.linearVelocity = direction * grabSmoothness;
     }
+
     void ReleaseObject()
     {
         grabbedObject.useGravity = true;
         grabbedObject.linearDamping = 0f;
         grabbedObject = null;
     }
+
     void UpdateCrosshair()
     {
         if (crosshair == null) return;
@@ -110,12 +118,17 @@ public class ObjectInteract : MonoBehaviour
         {
             bool highlight = false;
 
-            if ((grabbableLayer == (grabbableLayer | (1 << hit.collider.gameObject.layer))) || hit.collider.CompareTag("Readable") || hit.collider.CompareTag("Pickupable"))
+            if ((grabbableLayer == (grabbableLayer | (1 << hit.collider.gameObject.layer)))
+                || hit.collider.CompareTag("Readable")
+                || hit.collider.CompareTag("Pickupable"))
             {
                 highlight = true;
             }
 
-            if (hit.collider.CompareTag("Door") || hit.collider.CompareTag("Trapdoor") || hit.collider.CompareTag("Draggable"))
+            if (hit.collider.CompareTag("Door")
+                || hit.collider.CompareTag("Trapdoor")
+                || hit.collider.CompareTag("Draggable")
+                || hit.collider.CompareTag("Lever")) // LEVER
             {
                 highlight = true;
                 if (HintCanvas != null) HintCanvas.SetActive(true);
@@ -132,6 +145,7 @@ public class ObjectInteract : MonoBehaviour
         crosshair.color = defaultColor;
         if (HintCanvas != null) HintCanvas.SetActive(false);
     }
+
     bool GetGrabbableObject(out Rigidbody rb)
     {
         rb = null;
@@ -146,6 +160,7 @@ public class ObjectInteract : MonoBehaviour
         }
         return false;
     }
+
     bool TryInteractWithPuzzleOrReadable()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -159,6 +174,7 @@ public class ObjectInteract : MonoBehaviour
         }
         return false;
     }
+
     void InteractWithPuzzleOrReadable(GameObject readable)
     {
         PairedPuzzle puzzleScript = readable.GetComponentInParent<PairedPuzzle>();
@@ -170,20 +186,15 @@ public class ObjectInteract : MonoBehaviour
             if (GameStateManager.Instance != null && GameStateManager.Instance.IsPuzzleCompleted(puzzleID))
             {
                 Debug.Log("Puzzle già completato, non apro la scena.");
-                // Facoltativo: mostra un messaggio a schermo o feedback visivo
                 return;
             }
 
-            // Salva la posizione e rotazione del player
             Transform playerTransform = GameObject.FindWithTag("Player").transform;
             GameStateManager.Instance.SavePlayerState(playerTransform.position, playerTransform.rotation);
-
-            // Carica la scena del puzzle
             SceneLoadManager.Instance.LoadPuzzleScene(puzzleID);
         }
         else
         {
-            // È solo un foglio da leggere (canvas)
             canvasReadable = readable.transform.GetChild(0).gameObject;
             if (canvasReadable == null)
             {
@@ -199,6 +210,7 @@ public class ObjectInteract : MonoBehaviour
             Time.timeScale = 0f;
         }
     }
+
     public void ClosePuzzleOrReadable()
     {
         canvasReadable.SetActive(false);
@@ -208,6 +220,7 @@ public class ObjectInteract : MonoBehaviour
         Cursor.visible = false;
         Time.timeScale = 1f;
     }
+
     bool TryToggleDoor()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -222,13 +235,14 @@ public class ObjectInteract : MonoBehaviour
         }
         return false;
     }
+
     bool TryToggleTrapdoor()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, grabDistance))
         {
             TrapdoorHinge trapdoor = hit.collider.GetComponentInParent<TrapdoorHinge>();
-            if(trapdoor != null)
+            if (trapdoor != null)
             {
                 trapdoor.ToggleTrapdoor();
                 return true;
@@ -236,29 +250,57 @@ public class ObjectInteract : MonoBehaviour
         }
         return false;
     }
+
+    // ===== LEVER =====
+    bool IsLookingAtLever()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        return Physics.Raycast(ray, out RaycastHit hit, grabDistance) && hit.collider.CompareTag("Lever");
+    }
+
+    bool TryToggleLever()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, grabDistance))
+        {
+            LeverSwitch lever = hit.collider.GetComponentInParent<LeverSwitch>();
+            if (lever != null)
+            {
+                lever.Toggle();
+                return true;
+            }
+        }
+        return false;
+    }
+    // ==================
+
     bool IsLookingAtDoor()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         return Physics.Raycast(ray, out RaycastHit hit, grabDistance) && hit.collider.CompareTag("Door");
     }
+
     bool IsLookingAtReadable()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         return Physics.Raycast(ray, out RaycastHit hit, grabDistance) && hit.collider.CompareTag("Readable");
     }
+
     bool isLookingAtTrapdoor()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         return Physics.Raycast(ray, out RaycastHit hit, grabDistance) && hit.collider.CompareTag("Trapdoor");
     }
+
     void IsLookingAtPickupable()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, grabDistance) && hit.collider.CompareTag("Pickupable"))
         {
             Destroy(hit.collider.gameObject);
-        }        
+        }
     }
+
     bool IsLookingAtDraggable()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);

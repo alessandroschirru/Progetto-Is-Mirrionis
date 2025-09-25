@@ -17,6 +17,7 @@ TagManager:
   - Trapdoor
   - Pickupable
   - Draggable
+  - Lever
   layers:
   - Default
   - TransparentFX

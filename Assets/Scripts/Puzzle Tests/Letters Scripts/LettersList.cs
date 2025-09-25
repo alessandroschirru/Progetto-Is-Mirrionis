@@ -23,7 +23,7 @@ public class LettersList : MonoBehaviour
     public GameObject noteSparseGiorno65;
     public GameObject noteSparseGiorno70;
 
-    private bool letterOpen = true;
+    [HideInInspector] public bool letterOpen = true;
     private GameObject currentLetter;
 
     void Awake()
