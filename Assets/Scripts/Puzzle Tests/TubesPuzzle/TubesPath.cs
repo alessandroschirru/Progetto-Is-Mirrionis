@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TubesPath : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class TubesPath : MonoBehaviour
         if (!graph.ContainsKey(a)) graph[a] = new HashSet<GameObject>();
         if (!graph.ContainsKey(b)) graph[b] = new HashSet<GameObject>();
         if (graph[a].Add(b) | graph[b].Add(a))
-            Debug.Log($"Graph + {a.name} <-> {b.name}");
+            //Debug.Log($"Graph + {a.name} <-> {b.name}");
         RebuildPathStatic();
     }
 
@@ -40,7 +41,6 @@ public class TubesPath : MonoBehaviour
         bool changed = false;
         if (graph.TryGetValue(a, out var sa)) changed |= sa.Remove(b);
         if (graph.TryGetValue(b, out var sb)) changed |= sb.Remove(a);
-        if (changed) Debug.Log($"Graph - {a.name} <-> {b.name}");
         RebuildPathStatic();
     }
     public static void RemoveNode(GameObject a)
@@ -66,7 +66,6 @@ public class TubesPath : MonoBehaviour
         if (firstTube == null || finalTube == null) return;
         if (!graph.ContainsKey(firstTube))
         {
-            Debug.Log("Ancora non collegato");
             return;
         }
 
@@ -107,9 +106,14 @@ public class TubesPath : MonoBehaviour
             stack.Reverse();
             currentPath.AddRange(stack);
 
-            Debug.Log("PERCORSO COMPLETO: " +
-                      string.Join(" -> ", currentPath.Select(go => go.name)));
+            Debug.Log("PERCORSO COMPLETO: " + string.Join(" -> ", currentPath.Select(go => go.name)));
             // TODO: qui puoi triggerare la fine del puzzle
+
+            string id = SceneLoadManager.Instance != null ? SceneLoadManager.Instance.puzzleToLoad : null;
+            if (!string.IsNullOrEmpty(id) && GameStateManager.Instance != null)
+                GameStateManager.Instance.MarkPuzzleAsCompleted(id);
+
+            SceneManager.LoadScene("LaboratoryScene");
         }
         else
         {

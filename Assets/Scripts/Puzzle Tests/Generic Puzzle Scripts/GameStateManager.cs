@@ -8,6 +8,7 @@ public class GameStateManager : MonoBehaviour
     public Vector3 playerSavedPosition;
     public Quaternion playerSavedRotation;
     public bool hasSavedPosition = false;
+    public event System.Action<string> PuzzleCompleted;
 
     private HashSet<string> completedPuzzles = new HashSet<string>();
 
@@ -24,6 +25,21 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
+    public bool IsPuzzleCompleted(string id)
+    {
+        return !string.IsNullOrEmpty(id) && completedPuzzles.Contains(id);
+    }
+
+    public void MarkPuzzleAsCompleted(string id)
+    {
+        if (string.IsNullOrEmpty(id)) return;
+        if (completedPuzzles.Add(id))
+        {
+            Debug.Log($"Puzzle completato: {id}");
+            PuzzleCompleted?.Invoke(id);
+        }
+    }
+
     public void SavePlayerState(Vector3 pos, Quaternion rot)
     {
         playerSavedPosition = pos;
@@ -31,13 +47,23 @@ public class GameStateManager : MonoBehaviour
         hasSavedPosition = true;
     }
 
-    public void MarkPuzzleAsCompleted(string puzzleID)
+    // >>> AGGIUNGI QUESTO <<<
+    public bool TryGetSavedPlayerState(out Vector3 pos, out Quaternion rot)
     {
-        completedPuzzles.Add(puzzleID);
+        if (hasSavedPosition)
+        {
+            pos = playerSavedPosition;
+            rot = playerSavedRotation;
+            return true;
+        }
+        pos = default;
+        rot = default;
+        return false;
     }
 
-    public bool IsPuzzleCompleted(string puzzleID)
+    // >>> E QUESTO <<<
+    public void ClearSavedPlayerState()
     {
-        return completedPuzzles.Contains(puzzleID);
+        hasSavedPosition = false;
     }
 }

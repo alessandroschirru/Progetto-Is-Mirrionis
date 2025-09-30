@@ -4,7 +4,10 @@ using UnityEngine.SceneManagement;
 public class SceneLoadManager : MonoBehaviour
 {
     public static SceneLoadManager Instance;
-    public string puzzleToLoad;
+    [HideInInspector] public string puzzleToLoad;
+    private GameObject player;
+
+    [HideInInspector] public GameObject puzzle;
 
     void Awake()
     {
@@ -29,6 +32,30 @@ public class SceneLoadManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "PuzzleScene")
+        {
+            if (player.activeSelf)
+            {
+                player.SetActive(false);
+            }
+        } 
+
+        if (SceneManager.GetActiveScene().name == "LaboratoryScene")
+        {
+            if (!player.activeSelf)
+            {
+                player.SetActive(true);
+            }
+        } 
+    }
+
     public void LoadPuzzleScene(string puzzleID)
     {
         puzzleToLoad = puzzleID;
@@ -37,24 +64,56 @@ public class SceneLoadManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        EnsurePlayerRef();
+
         if (scene.name == "PuzzleScene")
         {
-            GameObject puzzlesRoot = GameObject.Find("Puzzles");
-            if (puzzlesRoot == null)
-            {
-                Debug.LogError("PuzzlesRoot not found in PuzzleRoom scene.");
-                return;
-            }
+            if (player != null && player.activeSelf) player.SetActive(false);
 
-            GameObject puzzle = FindInChildren(puzzlesRoot.transform, puzzleToLoad);
-            if (puzzle != null)
+            GameObject puzzlesRoot = GameObject.Find("Puzzles");
+            if (puzzlesRoot == null) { Debug.LogError("PuzzlesRoot not found in PuzzleScene."); return; }
+
+            puzzle = FindInChildren(puzzlesRoot.transform, puzzleToLoad);
+            if (puzzle != null) puzzle.SetActive(true);
+            else Debug.LogWarning("Puzzle not found: " + puzzleToLoad);
+        }
+        else if (scene.name == "LaboratoryScene")
+        {
+            if (player != null && !player.activeSelf) player.SetActive(true);
+            RestorePlayerTransformSafe(); // <<< qui rimetti posizione/rotazione
+        }
+    }
+
+    void EnsurePlayerRef()
+    {
+        if (player == null) player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    void RestorePlayerTransformSafe()
+    {
+        if (player == null || GameStateManager.Instance == null) return;
+
+        if (GameStateManager.Instance.TryGetSavedPlayerState(out var pos, out var rot))
+        {
+            var cc = player.GetComponent<CharacterController>();
+            if (cc != null) cc.enabled = false;
+
+            var rb = player.GetComponent<Rigidbody>();
+            if (rb != null)
             {
-                puzzle.SetActive(true);
+                bool wasKinematic = rb.isKinematic;
+                rb.isKinematic = true;
+                player.transform.SetPositionAndRotation(pos, rot);
+                rb.isKinematic = wasKinematic;
             }
             else
             {
-                Debug.LogWarning("Puzzle not found: " + puzzleToLoad);
+                player.transform.SetPositionAndRotation(pos, rot);
             }
+
+            if (cc != null) cc.enabled = true;
+
+            GameStateManager.Instance.ClearSavedPlayerState();
         }
     }
 

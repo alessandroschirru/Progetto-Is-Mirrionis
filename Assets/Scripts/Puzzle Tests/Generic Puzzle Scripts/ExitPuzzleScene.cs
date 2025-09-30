@@ -21,7 +21,7 @@ public class ExitPuzzleScene : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene("ScenaTestAlessandro");
+            SceneManager.LoadScene("LaboratoryScene");
 
             SceneManager.sceneLoaded += (scene, mode) =>
             {

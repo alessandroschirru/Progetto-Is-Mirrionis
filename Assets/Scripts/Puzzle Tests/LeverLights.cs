@@ -14,7 +14,7 @@ public class LeverLights : MonoBehaviour
     void Awake()
     {
         lever = GetComponent<LeverSwitch>();
-        if (puzzleManager == null) puzzleManager = FindObjectOfType<LightsPuzzleManager>();
+        if (puzzleManager == null) puzzleManager = FindFirstObjectByType<LightsPuzzleManager>();
 
         // quando la leva va ON/OFF, aggiorna le luci
         lever.OnTurnOn.AddListener(() => SetLights(true));

@@ -18,6 +18,7 @@ TagManager:
   - Pickupable
   - Draggable
   - Lever
+  - HUD
   layers:
   - Default
   - TransparentFX

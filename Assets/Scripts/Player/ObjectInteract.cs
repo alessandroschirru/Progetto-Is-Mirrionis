@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ObjectInteract : MonoBehaviour
@@ -177,8 +178,8 @@ public class ObjectInteract : MonoBehaviour
 
     void InteractWithPuzzleOrReadable(GameObject readable)
     {
+        // 1) Se è un puzzle accoppiato, lascia tutto com'è
         PairedPuzzle puzzleScript = readable.GetComponentInParent<PairedPuzzle>();
-
         if (puzzleScript != null)
         {
             string puzzleID = puzzleScript.puzzleID;
@@ -192,23 +193,45 @@ public class ObjectInteract : MonoBehaviour
             Transform playerTransform = GameObject.FindWithTag("Player").transform;
             GameStateManager.Instance.SavePlayerState(playerTransform.position, playerTransform.rotation);
             SceneLoadManager.Instance.LoadPuzzleScene(puzzleID);
+            return;
         }
-        else
+
+        // 2) Plane 'fogli'  cerca per NOME dato dal componente ReadableTarget
+        ReadableTarget target = readable.GetComponent<ReadableTarget>();
+        if (target != null)
         {
-            canvasReadable = readable.transform.GetChild(0).gameObject;
-            if (canvasReadable == null)
+            var panel = FindObjectByNameIncludingInactive(target.letterObjectName);
+            if (panel == null)
             {
-                Debug.LogError("Canvas per lettura non trovato!");
+                Debug.LogWarning($"ReadableTarget: '{target.letterObjectName}' non trovato.");
                 return;
             }
 
+            canvasReadable = panel;
             canvasReadable.SetActive(true);
+
             PauseManager.inPuzzle = true;
             crosshair.gameObject.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             Time.timeScale = 0f;
+            return;
         }
+
+        // 3) Fallback: oggetto Readable con un canvas come primo figlio
+        canvasReadable = readable.transform.childCount > 0 ? readable.transform.GetChild(0).gameObject : null;
+        if (canvasReadable == null)
+        {
+            Debug.LogError("Canvas per lettura non trovato!");
+            return;
+        }
+
+        canvasReadable.SetActive(true);
+        PauseManager.inPuzzle = true;
+        crosshair.gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 0f;
     }
 
     public void ClosePuzzleOrReadable()
@@ -310,5 +333,51 @@ public class ObjectInteract : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    static GameObject FindObjectByNameIncludingInactive(string targetName)
+    {
+        if (string.IsNullOrEmpty(targetName)) return null;
+
+        // 1) Se è già attivo in scena
+        var go = GameObject.Find(targetName);
+        if (go != null) return go;
+
+        // 2) Scene normali
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            var scene = SceneManager.GetSceneAt(i);
+            if (!scene.isLoaded) continue;
+            foreach (var root in scene.GetRootGameObjects())
+            {
+                var t = FindInChildrenByName(root.transform, targetName);
+                if (t != null) return t.gameObject;
+            }
+        }
+
+        // 3) Scena DontDestroyOnLoad
+        var temp = new GameObject("_finder_temp");
+        Object.DontDestroyOnLoad(temp);
+        var ddolScene = temp.scene;
+        Object.Destroy(temp);
+
+        foreach (var root in ddolScene.GetRootGameObjects())
+        {
+            var t = FindInChildrenByName(root.transform, targetName);
+            if (t != null) return t.gameObject;
+        }
+
+        return null;
+    }
+
+    static Transform FindInChildrenByName(Transform parent, string name)
+    {
+        if (parent.name == name) return parent;
+        foreach (Transform child in parent)
+        {
+            var r = FindInChildrenByName(child, name);
+            if (r != null) return r;
+        }
+        return null;
     }
 }
